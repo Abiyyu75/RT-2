@@ -1,32 +1,78 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const header = document.getElementById('header');
+// =================================================
+// script.js: ANIMASI COUNTER & SCROLL EFFECTS
+// =================================================
 
-    // 1. Toggle Menu Hamburger untuk Mobile
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-        });
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. FUNGSI ANIMASI COUNTER STATISTIK
+    
+    function animateCounter(id, endValue, duration) {
+        const element = document.getElementById(id);
+        if (!element) return;
+        
+        let start = 0;
+        
+        const stepTime = Math.max(1, Math.abs(Math.floor(duration / endValue))); 
+
+        const timer = setInterval(() => {
+            start += 1;
+            element.textContent = start;
+            if (start >= endValue) {
+                element.textContent = endValue;
+                clearInterval(timer);
+            }
+        }, stepTime);
     }
 
-    // 2. Efek Scroll Header (mengubah style saat di-scroll)
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.style.backgroundColor = 'var(--bg-color)'; // Background gelap penuh saat di-scroll
-            header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.5)';
-        } else {
-            header.style.backgroundColor = 'rgba(13, 13, 13, 0.8)'; // Transparan saat di atas
-            header.style.boxShadow = 'none';
-        }
+    // Nilai-nilai statistik
+    const totalHari = 5;
+    const totalAnggota = 10;
+    const totalDestinasi = 7; // Diperbarui menjadi 7 sesuai jumlah Lokasi Card di HTML
+
+    animateCounter('stat-hari', totalHari, 1500);
+    animateCounter('stat-anggota', totalAnggota, 1500);
+    animateCounter('stat-destinasi', totalDestinasi, 1500);
+
+
+    // 2. LOGIKA EFEK SCROLL (Fade-in/Slide-up menggunakan Intersection Observer)
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Tambahkan kelas 'visible' jika elemen muncul di viewport
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, {
+        threshold: 0.1
     });
 
-    // 3. Menutup menu saat link di-klik (hanya untuk mobile)
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                navMenu.classList.remove('active');
+    // Pilih semua elemen yang ingin diberi efek animasi
+    document.querySelectorAll('.lokasi-card, .peserta-card, .timeline-content, .refleksi-content, .stat-card, .galeri-item').forEach(card => {
+        // Set kondisi awal (tersembunyi dan sedikit turun)
+        card.style.opacity = '0';
+        card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        card.style.transform = 'translateY(20px)';
+        
+        // Mulai mengamati elemen
+        observer.observe(card);
+    });
+
+    // 3. SMOOTH SCROLLING NAVIGASI
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
         });
     });
+    
 });
