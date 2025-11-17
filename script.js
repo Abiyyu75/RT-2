@@ -1,65 +1,32 @@
-// =================================================
-// script.js: ANIMASI COUNTER & SCROLL EFFECTS
-// =================================================
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const header = document.getElementById('header');
 
-document.addEventListener('DOMContentLoaded', () => {
-
-    // 1. FUNGSI ANIMASI COUNTER STATISTIK
-    
-    /**
-     * Menganimasikan hitungan dari 0 hingga endValue.
-     */
-    function animateCounter(id, endValue, duration) {
-        const element = document.getElementById(id);
-        let start = 0;
-        
-        // Menghitung interval waktu untuk setiap langkah (step)
-        const stepTime = Math.abs(Math.floor(duration / endValue)); 
-
-        const timer = setInterval(() => {
-            start += 1;
-            element.textContent = start;
-            if (start === endValue) {
-                clearInterval(timer);
-            }
-        }, stepTime);
+    // 1. Toggle Menu Hamburger untuk Mobile
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
     }
 
-    // Nilai-nilai statistik yang akan dianimasikan
-    const totalHari = 5;
-    const totalAnggota = 10;
-    const totalDestinasi = 8;
-
-    // Panggil fungsi counter saat DOM dimuat
-    animateCounter('stat-hari', totalHari, 1500);
-    animateCounter('stat-anggota', totalAnggota, 1500);
-    animateCounter('stat-destinasi', totalDestinasi, 1500);
-
-
-    // 2. LOGIKA EFEK SCROLL (Fade-in/Slide-up menggunakan Intersection Observer)
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Tambahkan kelas 'visible' jika elemen muncul di viewport
-                entry.target.classList.add('visible');
-                // Berhenti mengamati setelah elemen terlihat
-                observer.unobserve(entry.target); 
-            }
-        });
-    }, {
-        // Memicu ketika 10% dari elemen harus terlihat sebelum memicu
-        threshold: 0.1
+    // 2. Efek Scroll Header (mengubah style saat di-scroll)
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            header.style.backgroundColor = 'var(--bg-color)'; // Background gelap penuh saat di-scroll
+            header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.5)';
+        } else {
+            header.style.backgroundColor = 'rgba(13, 13, 13, 0.8)'; // Transparan saat di atas
+            header.style.boxShadow = 'none';
+        }
     });
 
-    // Pilih semua elemen penting yang ingin diberi efek animasi
-    document.querySelectorAll('.lokasi-card, .peserta-card, .timeline-content, .refleksi-content, .stat-card, .galeri-item, .player-bubble, .manager-card').forEach(card => {
-        // Set kondisi awal (tersembunyi dan sedikit turun)
-        card.style.opacity = '0';
-        card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        card.style.transform = 'translateY(20px)';
-        
-        // Mulai mengamati elemen
-        observer.observe(card);
+    // 3. Menutup menu saat link di-klik (hanya untuk mobile)
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                navMenu.classList.remove('active');
+            }
+        });
     });
 });
