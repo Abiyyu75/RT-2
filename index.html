@@ -1,857 +1,398 @@
-<!doctype html>
-<html lang="id" class="h-full">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dokumentasi Ekspedisi Malang - Kelas 9 RT 2</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-        /* ===== BASE STYLES ===== */
-        body {
-            box-sizing: border-box;
-        }
-        
-        /* ===== LAYOUT COMPONENTS ===== */
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        /* ===== INTERACTIVE EFFECTS ===== */
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        /* ===== TIMELINE STYLES ===== */
-        .timeline-item {
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: #4f46e5;
-            border-radius: 50%;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 1.2rem;
-            width: 2px;
-            height: calc(100% - 0.5rem);
-            background: #e5e7eb;
-        }
-        
-        .timeline-item:last-child::after {
-            display: none;
-        }
-        
-        /* ===== EXPEDITION THEME STYLES ===== */
-        .expedition-badge {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-        
-        .location-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .participant-avatar {
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        .icon-3d {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transform: translateZ(0);
-        }
-    </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full font-sans"><!-- ===== HEADER SECTION ===== -->
-  <header class="gradient-bg text-white py-16">
-   <div class="container mx-auto px-6 text-center">
-    <h1 id="judul-utama" class="text-5xl font-bold mb-4">Ekspedisi Malang 2025</h1>
-    <p id="subtitle" class="text-xl opacity-90 mb-8">Petualangan Edukatif Kelompok RT 02, Kelas 9 SMPIP Baitul Maal</p><!-- Info Badges -->
-    <div class="flex justify-center items-center space-x-4 text-lg flex-wrap gap-2"><span class="bg-white bg-opacity-20 px-4 py-2 rounded-full"> 📅 10-14 November 2025 </span> <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full"> 🎒 Kelompok RT 02 </span> <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full"> 📚 Kelas 9 </span> <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full"> 🏫 SMPIP Baitul Maal </span>
-    </div>
-   </div>
-  </header><!-- ===== NAVIGATION SECTION ===== -->
-  <nav class="bg-white shadow-md sticky top-0 z-50">
-   <div class="container mx-auto px-6">
-    <div class="flex justify-center space-x-8 py-4 flex-wrap"><a href="#overview" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors"> Overview </a> <a href="#timeline" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors"> Timeline </a> <a href="#galeri" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors"> Galeri </a> <a href="#peserta" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors"> Peserta </a> <a href="#refleksi" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors"> Refleksi </a>
-    </div>
-   </div>
-  </nav><!-- ===== MAIN CONTENT ===== -->
-  <main class="bg-gray-50"><!-- ===== OVERVIEW SECTION ===== -->
-   <section id="overview" class="py-16">
-    <div class="container mx-auto px-6"><!-- Section Header -->
-     <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Tentang Ekspedisi</h2>
-      <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
-     </div><!-- Overview Content Grid -->
-     <div class="grid md:grid-cols-2 gap-12 items-center"><!-- Left Column: Description & Goals -->
-      <div>
-       <p id="deskripsi-ekspedisi" class="text-lg text-gray-700 leading-relaxed mb-6">Ekspedisi edukatif ke Malang merupakan kegiatan pembelajaran di luar kelas yang bertujuan untuk memperluas wawasan siswa tentang sejarah, budaya, dan alam Indonesia. Melalui kunjungan langsung ke berbagai destinasi bersejarah dan edukatif di Malang.</p><!-- Goals List -->
-       <div class="space-y-4">
-        <div class="flex items-center space-x-3">
-         <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center"><span class="text-indigo-600 font-bold">🎯</span>
-         </div><span class="text-gray-700"> Pembelajaran kontekstual dan experiential learning </span>
-        </div>
-        <div class="flex items-center space-x-3">
-         <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center"><span class="text-indigo-600 font-bold">🤝</span>
-         </div><span class="text-gray-700"> Membangun kerjasama dan kebersamaan antar siswa </span>
-        </div>
-        <div class="flex items-center space-x-3">
-         <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center"><span class="text-indigo-600 font-bold">🌟</span>
-         </div><span class="text-gray-700"> Mengembangkan karakter dan kemandirian </span>
-        </div>
-       </div>
-      </div><!-- Right Column: Locations -->
-      <div class="bg-white rounded-2xl shadow-lg p-8">
-       <h3 class="text-2xl font-bold text-gray-800 mb-6">Lokasi Kunjungan</h3><!-- Locations List -->
-       <div class="space-y-4">
-        <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
-         <div class="flex items-start space-x-3"><span class="text-2xl mt-1">🏡</span>
-          <div class="flex-1">
-           <h4 class="font-semibold text-gray-800 mb-2">Dusun Maron</h4>
-           <p class="text-sm text-gray-600 mb-2">Desa wisata dengan suasana pedesaan yang asri dan tradisional</p>
-           <p class="text-xs text-gray-500 leading-relaxed">Dusun Maron merupakan kawasan pedesaan yang masih mempertahankan keaslian budaya dan tradisi Jawa. Di sini siswa dapat mempelajari kehidupan masyarakat desa, sistem pertanian tradisional, dan nilai-nilai gotong royong yang masih kental. Lokasi ini menjadi titik awal untuk memahami kontras antara kehidupan kota dan desa.</p>
-          </div>
-         </div>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
-         <div class="flex items-start space-x-3"><span class="text-2xl mt-1">🚂</span>
-          <div class="flex-1">
-           <h4 class="font-semibold text-gray-800 mb-2">Stasiun Pasar Senen</h4>
-           <p class="text-sm text-gray-600 mb-2">Stasiun kereta api bersejarah sebagai titik keberangkatan</p>
-           <p class="text-xs text-gray-500 leading-relaxed">Stasiun Pasar Senen adalah salah satu stasiun tertua di Jakarta yang dibangun pada masa kolonial Belanda. Stasiun ini menjadi saksi bisu perkembangan transportasi kereta api di Indonesia. Siswa dapat mempelajari sejarah perkeretaapian Indonesia dan peran penting transportasi dalam pembangunan ekonomi nasional.</p>
-          </div>
-         </div>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
-         <div class="flex items-start space-x-3"><span class="text-2xl mt-1">🚉</span>
-          <div class="flex-1">
-           <h4 class="font-semibold text-gray-800 mb-2">Stasiun Malang Kota Baru</h4>
-           <p class="text-sm text-gray-600 mb-2">Stasiun modern yang menghubungkan Malang dengan kota-kota besar</p>
-           <p class="text-xs text-gray-500 leading-relaxed">Stasiun Malang Kota Baru merupakan stasiun kereta api yang telah dimodernisasi dengan fasilitas lengkap. Stasiun ini menjadi gerbang utama menuju Kota Malang dan sekitarnya. Siswa dapat mengamati perkembangan infrastruktur transportasi modern dan dampaknya terhadap mobilitas masyarakat.</p>
-          </div>
-         </div>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
-         <div class="flex items-start space-x-3"><span class="text-2xl mt-1">🎨</span>
-          <div class="flex-1">
-           <h4 class="font-semibold text-gray-800 mb-2" id="lokasi-kunjungan">Kampung Warna-Warni Jodipan</h4>
-           <p class="text-sm text-gray-600 mb-2">Kampung wisata dengan mural colorful yang menginspirasi</p>
-           <p class="text-xs text-gray-500 leading-relaxed">Kampung Jodipan adalah contoh nyata transformasi kawasan kumuh menjadi destinasi wisata melalui seni mural. Dulunya kawasan ini adalah pemukiman padat di bantaran Sungai Brantas. Melalui program revitalisasi dengan melibatkan mahasiswa dan seniman, kampung ini berubah menjadi kampung warna-warni yang menarik wisatawan. Siswa dapat mempelajari konsep pemberdayaan masyarakat, seni komunitas, dan pariwisata berkelanjutan.</p>
-          </div>
-         </div>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
-         <div class="flex items-start space-x-3"><span class="text-2xl mt-1">⚔️</span>
-          <div class="flex-1">
-           <h4 class="font-semibold text-gray-800 mb-2">Museum Brawijaya</h4>
-           <p class="text-sm text-gray-600 mb-2">Museum sejarah perjuangan kemerdekaan Indonesia</p>
-           <p class="text-xs text-gray-500 leading-relaxed">Museum Brawijaya menyimpan koleksi artefak dan dokumentasi sejarah perjuangan kemerdekaan Indonesia, khususnya yang berkaitan dengan Divisi Brawijaya. Museum ini menampilkan diorama pertempuran, senjata tradisional dan modern, serta kisah heroik para pejuang. Siswa dapat mempelajari nilai-nilai patriotisme, sejarah perjuangan bangsa, dan pentingnya mempertahankan kemerdekaan.</p>
-          </div>
-         </div>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
-         <div class="flex items-start space-x-3"><span class="text-2xl mt-1">🏛️</span>
-          <div class="flex-1">
-           <h4 class="font-semibold text-gray-800 mb-2">Museum Angkut</h4>
-           <p class="text-sm text-gray-600 mb-2">Museum transportasi dengan koleksi kendaraan dari berbagai era</p>
-           <p class="text-xs text-gray-500 leading-relaxed">Museum Angkut menampilkan evolusi transportasi dari masa ke masa, mulai dari kendaraan tradisional hingga modern. Koleksinya meliputi mobil klasik, motor antik, pesawat, kapal, hingga replika kendaraan dari berbagai negara. Museum ini dilengkapi dengan zona tematik yang menggambarkan suasana kota-kota dunia. Siswa dapat mempelajari perkembangan teknologi transportasi dan dampaknya terhadap peradaban manusia.</p>
-          </div>
-         </div>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
-         <div class="flex items-start space-x-3"><span class="text-2xl mt-1">🎃</span>
-          <div class="flex-1">
-           <h4 class="font-semibold text-gray-800 mb-2">Perkebunan Labu Siam</h4>
-           <p class="text-sm text-gray-600 mb-2">Wisata agro dengan pembelajaran pertanian berkelanjutan</p>
-           <p class="text-xs text-gray-500 leading-relaxed">Perkebunan Labu Siam merupakan kawasan agrowisata yang menerapkan sistem pertanian organik dan berkelanjutan. Di sini siswa dapat mempelajari teknik budidaya labu siam, sistem irigasi modern, dan pengelolaan hasil panen. Selain itu, siswa juga dapat memahami konsep pertanian ramah lingkungan, ketahanan pangan, dan potensi ekonomi sektor pertanian.</p>
-          </div>
-         </div>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
-         <div class="flex items-start space-x-3"><span class="text-2xl mt-1">🌾</span>
-          <div class="flex-1">
-           <h4 class="font-semibold text-gray-800 mb-2">Desa Pujon Lor</h4>
-           <p class="text-sm text-gray-600 mb-2">Desa wisata dengan industri susu segar dan pemandangan pegunungan</p>
-           <p class="text-xs text-gray-500 leading-relaxed">Desa Pujon Lor terletak di dataran tinggi dengan udara sejuk dan pemandangan pegunungan yang indah. Desa ini terkenal dengan industri peternakan sapi perah dan produksi susu segar berkualitas tinggi. Siswa dapat mempelajari proses peternakan modern, pengolahan susu, manajemen koperasi susu, serta melihat bagaimana masyarakat desa mengembangkan ekonomi kreatif melalui wisata edukasi peternakan.</p>
-          </div>
-         </div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- ===== TIMELINE SECTION ===== -->
-   <section id="timeline" class="py-16 bg-white">
-    <div class="container mx-auto px-6"><!-- Section Header -->
-     <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Timeline Kegiatan</h2>
-      <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
-     </div><!-- Timeline Container -->
-     <div class="max-w-4xl mx-auto">
-      <div class="space-y-8">
-       <div class="timeline-item">
-        <div class="bg-gray-50 rounded-lg p-6">
-         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-xl font-bold text-gray-800">10 November - Keberangkatan</h3><span class="text-sm text-gray-500 bg-indigo-100 px-3 py-1 rounded-full">Hari 1</span>
-         </div>
-         <div class="space-y-3 text-gray-700">
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Pelepasan Ekspedisi di SMPIP Baitul Maal</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Keberangkatan dari Stasiun Senen menuju Malang Kota</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Tiba di Stasiun Malang</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Eksplorasi Kampung Warna Warni &amp; Tridi</p>
-          </div>
-         </div>
-        </div>
-       </div>
-       <div class="timeline-item">
-        <div class="bg-gray-50 rounded-lg p-6">
-         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-xl font-bold text-gray-800">11 November - Sejarah &amp; Pembukaan</h3><span class="text-sm text-gray-500 bg-indigo-100 px-3 py-1 rounded-full">Hari 2</span>
-         </div>
-         <div class="space-y-3 text-gray-700">
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Eksplorasi Museum Brawijaya</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Pembukaan di Balai Desa</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Pengenalan lokasi dan sapa masyarakat</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Games dan Edukasi anak-anak TPA</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Diskusi dan Refleksi Kelompok</p>
-          </div>
-         </div>
-        </div>
-       </div>
-       <div class="timeline-item">
-        <div class="bg-gray-50 rounded-lg p-6">
-         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-xl font-bold text-gray-800">12 November - Edukasi &amp; Inspirasi</h3><span class="text-sm text-gray-500 bg-indigo-100 px-3 py-1 rounded-full">Hari 3</span>
-         </div>
-         <div class="space-y-3 text-gray-700">
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Penyuluhan 7+1 Kebiasaan Anak Indonesia Hebat</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Observasi dan sharing profesi community</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Kelas Inspirasi Desa: Bersama anak-anak sekitar lokasi desa membuat kerajinan tangan gantungan kunci</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Games &amp; Edukasi bersama anak-anak SD</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Diskusi dan Refleksi Kelompok</p>
-          </div>
-         </div>
-        </div>
-       </div>
-       <div class="timeline-item">
-        <div class="bg-gray-50 rounded-lg p-6">
-         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-xl font-bold text-gray-800">13 November - Aksi Sosial &amp; Penutupan</h3><span class="text-sm text-gray-500 bg-indigo-100 px-3 py-1 rounded-full">Hari 4</span>
-         </div>
-         <div class="space-y-3 text-gray-700">
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>BPJS (Bersih-bersih Perkampungan Jadi Sehat)</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Diskusi dan Refleksi Kelompok</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Closing - Penutupan kegiatan ekspedisi</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Eksplorasi perkebunan apel</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Zoologi Frater Vianney &amp; Museum Angkut Malang</p>
-          </div>
-         </div>
-        </div>
-       </div>
-       <div class="timeline-item">
-        <div class="bg-gray-50 rounded-lg p-6">
-         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-xl font-bold text-gray-800">14 November - Kepulangan</h3><span class="text-sm text-gray-500 bg-indigo-100 px-3 py-1 rounded-full">Hari 5</span>
-         </div>
-         <div class="space-y-3 text-gray-700">
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Perjalanan pulang Jakarta (Stasiun Malang - Senen)</p>
-          </div>
-          <div class="flex items-start space-x-3"><span class="text-indigo-600 font-bold text-sm mt-1">•</span>
-           <p>Tiba di SMP Islam Plus Baitul Maal</p>
-          </div>
-         </div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- ===== GALLERY SECTION ===== -->
-   <section id="galeri" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6"><!-- Section Header -->
-     <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Galeri Dokumentasi</h2>
-      <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
-     </div><!-- Photo Grid -->
-     <div class="photo-grid">
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">🏫</span>
-         <p class="font-semibold">SMPIP Baitul Maal</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Titik Kumpul Utama</h3>
-        <p class="text-sm text-gray-600">Berkumpul di sekolah untuk briefing dan persiapan keberangkatan</p>
-       </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">🏡</span>
-         <p class="font-semibold">Dusun Maron</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Penjemputan RT 02</h3>
-        <p class="text-sm text-gray-600">Penjemputan warga RT 02 di desa dengan suasana pedesaan yang asri</p>
-       </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">🚂</span>
-         <p class="font-semibold">Perjalanan Kereta</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Jakarta - Malang</h3>
-        <p class="text-sm text-gray-600">Perjalanan seru dari Stasiun Pasar Senen ke Malang Kota Baru</p>
-       </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">⚔️</span>
-         <p class="font-semibold">Museum Brawijaya</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Sejarah Perjuangan</h3>
-        <p class="text-sm text-gray-600">Mempelajari sejarah kemerdekaan Indonesia</p>
-       </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">🏛️</span>
-         <p class="font-semibold">Museum Angkut</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Evolusi Transportasi</h3>
-        <p class="text-sm text-gray-600">Mengenal perkembangan alat transportasi dunia</p>
-       </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">🎃</span>
-         <p class="font-semibold">Perkebunan Labu Siam</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Wisata Agro</h3>
-        <p class="text-sm text-gray-600">Belajar tentang pertanian modern dan berkelanjutan</p>
-       </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">🌾</span>
-         <p class="font-semibold">Desa Pujon Lor</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Wisata Susu</h3>
-        <p class="text-sm text-gray-600">Menikmati susu segar dan pemandangan pegunungan</p>
-       </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">🎨</span>
-         <p class="font-semibold">Kampung Jodipan</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Seni Mural</h3>
-        <p class="text-sm text-gray-600">Kampung warna-warni dengan seni mural yang memukau</p>
-       </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">👥</span>
-         <p class="font-semibold">Kebersamaan RT 02</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Solidaritas Kelompok</h3>
-        <p class="text-sm text-gray-600">Mempererat tali persaudaraan antar warga RT 02</p>
-       </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
-        <div class="text-center text-white"><span class="text-4xl mb-2 block">📚</span>
-         <p class="font-semibold">Pembelajaran</p>
-        </div>
-       </div>
-       <div class="p-4">
-        <h3 class="font-bold text-gray-800 mb-2">Edukasi Komprehensif</h3>
-        <p class="text-sm text-gray-600">Pengalaman belajar yang tak terlupakan di luar kelas</p>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- ===== PARTICIPANTS SECTION ===== -->
-   <section id="peserta" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6"><!-- Section Header -->
-     <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Peserta Ekspedisi</h2>
-      <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
-     </div><!-- Participants Container -->
-     <div class="max-w-6xl mx-auto"><!-- Guru Fasilitator -->
-      <div class="mb-12">
-       <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Guru Fasilitator</h3>
-       <div class="flex justify-center">
-        <div class="location-card rounded-2xl shadow-lg p-8 max-w-sm card-hover">
-         <div class="text-center">
-          <div class="participant-avatar w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 icon-3d"><span class="text-4xl text-white">👨‍🏫</span>
-          </div>
-          <h4 class="text-2xl font-bold text-gray-800 mb-3">Pak Reza Sa'adi, S.Pd</h4>
-          <div class="expedition-badge mb-4">
-           Guru Fasilitator
-          </div>
-          <p class="text-sm text-gray-600 leading-relaxed">Guru Geografi yang berpengalaman dalam kegiatan ekspedisi edukatif dan pembelajaran di luar kelas</p>
-         </div>
-        </div>
-       </div>
-      </div><!-- Ketua RT -->
-      <div class="mb-12">
-       <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Ketua RT 02</h3>
-       <div class="flex justify-center">
-        <div class="location-card rounded-2xl shadow-lg p-8 max-w-sm card-hover">
-         <div class="text-center">
-          <div class="participant-avatar w-24 h-24 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 icon-3d"><span class="text-4xl text-white">👑</span>
-          </div>
-          <h4 class="text-2xl font-bold text-gray-800 mb-3">Muhammad Kenzie Narendra</h4>
-          <div class="expedition-badge mb-4">
-           Ketua RT 02
-          </div>
-          <p class="text-sm text-gray-600 leading-relaxed">Pemimpin kelompok yang bertanggung jawab mengkoordinasi seluruh kegiatan dan memastikan kelancaran ekspedisi</p>
-         </div>
-        </div>
-       </div>
-      </div><!-- Warga RT 02 -->
-      <div>
-       <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Warga RT 02</h3>
-       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
-         <div class="text-center"><img src="https://cdn.canva.com/photos/MAEEuQTpjQs-person-red-white-black-outerwear.jpg" alt="Abiyyu Nawwaf Almujaddid" class="w-16 h-16 rounded-full object-cover mx-auto mb-4 border-3 border-pink-200" onerror="this.src=''; this.alt='Photo not available'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4" style="display: none;"><span class="text-2xl text-white">👨</span>
-          </div>
-          <h4 class="text-lg font-bold text-gray-800 mb-1">Abiyyu Nawwaf Almujaddid</h4>
-          <p class="text-sm text-pink-600 font-medium mb-2">Warga RT 02</p>
-          <p class="text-xs text-gray-600">Dokumentasi &amp; Fotografi</p>
-         </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
-         <div class="text-center"><img src="https://cdn.canva.com/photos/MAEEuQTpjQs-person-red-white-black-outerwear.jpg" alt="Muhammad Alfrazi Wijaya" class="w-16 h-16 rounded-full object-cover mx-auto mb-4 border-3 border-blue-200" onerror="this.src=''; this.alt='Photo not available'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4" style="display: none;"><span class="text-2xl text-white">👨</span>
-          </div>
-          <h4 class="text-lg font-bold text-gray-800 mb-1">Muhammad Alfrazi Wijaya</h4>
-          <p class="text-sm text-blue-600 font-medium mb-2">Warga RT 02</p>
-          <p class="text-xs text-gray-600">Koordinator Transportasi</p>
-         </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
-         <div class="text-center"><img src="https://cdn.canva.com/photos/MAEEuQTpjQs-person-red-white-black-outerwear.jpg" alt="Ghaisan Aulia Hakim Adrimasyah" class="w-16 h-16 rounded-full object-cover mx-auto mb-4 border-3 border-purple-200" onerror="this.src=''; this.alt='Photo not available'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4" style="display: none;"><span class="text-2xl text-white">👨</span>
-          </div>
-          <h4 class="text-lg font-bold text-gray-800 mb-1">Ghaisan Aulia Hakim Adrimasyah</h4>
-          <p class="text-sm text-purple-600 font-medium mb-2">Warga RT 02</p>
-          <p class="text-xs text-gray-600">Sekretaris Kegiatan</p>
-         </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
-         <div class="text-center"><img src="https://cdn.canva.com/photos/MAEEuQTpjQs-person-red-white-black-outerwear.jpg" alt="Nadhif Bazily Arham" class="w-16 h-16 rounded-full object-cover mx-auto mb-4 border-3 border-orange-200" onerror="this.src=''; this.alt='Photo not available'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4" style="display: none;"><span class="text-2xl text-white">👨</span>
-          </div>
-          <h4 class="text-lg font-bold text-gray-800 mb-1">Nadhif Bazily Arham</h4>
-          <p class="text-sm text-orange-600 font-medium mb-2">Warga RT 02</p>
-          <p class="text-xs text-gray-600">Bendahara Kelompok</p>
-         </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
-         <div class="text-center"><img src="https://cdn.canva.com/photos/MAEEuQTpjQs-person-red-white-black-outerwear.jpg" alt="Mohamad Tsani Akbar" class="w-16 h-16 rounded-full object-cover mx-auto mb-4 border-3 border-teal-200" onerror="this.src=''; this.alt='Photo not available'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="w-16 h-16 bg-gradient-to-br from-teal-400 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4" style="display: none;"><span class="text-2xl text-white">👨</span>
-          </div>
-          <h4 class="text-lg font-bold text-gray-800 mb-1">Mohamad Tsani Akbar</h4>
-          <p class="text-sm text-teal-600 font-medium mb-2">Warga RT 02</p>
-          <p class="text-xs text-gray-600">Koordinator Konsumsi</p>
-         </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
-         <div class="text-center"><img src="https://cdn.canva.com/photos/MAEEuQTpjQs-person-red-white-black-outerwear.jpg" alt="Fakhry Zhafran Khairi" class="w-16 h-16 rounded-full object-cover mx-auto mb-4 border-3 border-indigo-200" onerror="this.src=''; this.alt='Photo not available'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="w-16 h-16 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4" style="display: none;"><span class="text-2xl text-white">👨</span>
-          </div>
-          <h4 class="text-lg font-bold text-gray-800 mb-1">Fakhry Zhafran Khairi</h4>
-          <p class="text-sm text-indigo-600 font-medium mb-2">Warga RT 02</p>
-          <p class="text-xs text-gray-600">Koordinator Keamanan</p>
-         </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
-         <div class="text-center"><img src="https://cdn.canva.com/photos/MAEEuQTpjQs-person-red-white-black-outerwear.jpg" alt="Gibran Hady Wibowo" class="w-16 h-16 rounded-full object-cover mx-auto mb-4 border-3 border-rose-200" onerror="this.src=''; this.alt='Photo not available'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="w-16 h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4" style="display: none;"><span class="text-2xl text-white">👨</span>
-          </div>
-          <h4 class="text-lg font-bold text-gray-800 mb-1">Gibran Hady Wibowo</h4>
-          <p class="text-sm text-rose-600 font-medium mb-2">Warga RT 02</p>
-          <p class="text-xs text-gray-600">Koordinator Acara</p>
-         </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
-         <div class="text-center"><img src="https://cdn.canva.com/photos/MAEEuQTpjQs-person-red-white-black-outerwear.jpg" alt="Utbah Syamil Rabbani" class="w-16 h-16 rounded-full object-cover mx-auto mb-4 border-3 border-emerald-200" onerror="this.src=''; this.alt='Photo not available'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4" style="display: none;"><span class="text-2xl text-white">👨</span>
-          </div>
-          <h4 class="text-lg font-bold text-gray-800 mb-1">Utbah Syamil Rabbani</h4>
-          <p class="text-sm text-emerald-600 font-medium mb-2">Warga RT 02</p>
-          <p class="text-xs text-gray-600">Koordinator Perlengkapan</p>
-         </div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- ===== REFLECTION SECTION ===== -->
-   <section id="refleksi" class="py-16 bg-white">
-    <div class="container mx-auto px-6"><!-- Section Header -->
-     <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Refleksi &amp; Pembelajaran</h2>
-      <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
-     </div><!-- Reflection Container -->
-     <div class="max-w-4xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-8">
-       <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8">
-        <div class="text-center mb-6"><span class="text-4xl">💡</span>
-         <h3 class="text-2xl font-bold text-gray-800 mt-4">Pembelajaran yang Didapat</h3>
-        </div>
-        <ul class="space-y-3 text-gray-700">
-         <li class="flex items-start space-x-3"><span class="text-indigo-600 mt-1">•</span> <span>Memahami sejarah dan perkembangan transportasi Indonesia</span></li>
-         <li class="flex items-start space-x-3"><span class="text-indigo-600 mt-1">•</span> <span>Mengenal keanekaragaman hayati dan pentingnya konservasi</span></li>
-         <li class="flex items-start space-x-3"><span class="text-indigo-600 mt-1">•</span> <span>Belajar tentang pemberdayaan masyarakat melalui pariwisata</span></li>
-         <li class="flex items-start space-x-3"><span class="text-indigo-600 mt-1">•</span> <span>Mengembangkan kemampuan observasi dan analisis</span></li>
-        </ul>
-       </div>
-       <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8">
-        <div class="text-center mb-6"><span class="text-4xl">🌟</span>
-         <h3 class="text-2xl font-bold text-gray-800 mt-4">Nilai-Nilai yang Tertanam</h3>
-        </div>
-        <ul class="space-y-3 text-gray-700">
-         <li class="flex items-start space-x-3"><span class="text-teal-600 mt-1">•</span> <span>Kerjasama dan gotong royong dalam kelompok</span></li>
-         <li class="flex items-start space-x-3"><span class="text-teal-600 mt-1">•</span> <span>Menghargai keberagaman budaya dan alam Indonesia</span></li>
-         <li class="flex items-start space-x-3"><span class="text-teal-600 mt-1">•</span> <span>Tanggung jawab terhadap lingkungan dan sesama</span></li>
-         <li class="flex items-start space-x-3"><span class="text-teal-600 mt-1">•</span> <span>Kemandirian dan kepercayaan diri</span></li>
-        </ul>
-       </div>
-      </div>
-      <div class="mt-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-8 text-white text-center">
-       <h3 class="text-2xl font-bold mb-4">Pesan untuk Masa Depan</h3>
-       <p class="text-lg leading-relaxed">"Ekspedisi ini bukan hanya tentang mengunjungi tempat-tempat menarik, tetapi juga tentang membangun karakter, memperluas wawasan, dan mempererat persaudaraan. Semoga pengalaman ini menjadi bekal berharga untuk menghadapi tantangan di masa depan dan selalu mengingat pentingnya belajar dari lingkungan sekitar."</p>
-       <div class="mt-6"><span class="text-sm opacity-90">- Kelompok RT 02, Kelas 9 SMPIP Baitul Maal -</span>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-  </main><!-- ===== FOOTER SECTION ===== -->
-  <footer class="bg-gray-800 text-white py-12">
-   <div class="container mx-auto px-6 text-center"><!-- School Info -->
-    <div class="mb-8">
-     <h3 id="nama-sekolah" class="text-2xl font-bold mb-2">SMPIP Baitul Maal</h3>
-     <p class="text-gray-400">Membentuk Generasi Berakhlak Mulia dan Berprestasi</p>
-    </div><!-- Copyright -->
-    <div class="border-t border-gray-700 pt-8">
-     <p class="text-gray-400">© 2025 Dokumentasi Ekspedisi Malang - Kelompok RT 02, Kelas 9 SMPIP Baitul Maal</p>
-     <p class="text-sm text-gray-500 mt-2">Dibuat dengan ❤️ untuk mengenang momen berharga bersama</p>
-    </div>
-   </div>
-  </footer><!-- ===== JAVASCRIPT SECTION ===== -->
-  <script>
-        // ===== CONFIGURATION OBJECT =====
-        const defaultConfig = {
-            judul_utama: "Ekspedisi Malang 2025",
-            subtitle: "Petualangan Edukatif Kelompok RT 02, Kelas 9 SMPIP Baitul Maal",
-            deskripsi_ekspedisi: "Ekspedisi edukatif ke Malang merupakan kegiatan pembelajaran di luar kelas yang bertujuan untuk memperluas wawasan siswa tentang sejarah, budaya, dan alam Indonesia. Melalui kunjungan langsung ke berbagai destinasi bersejarah dan edukatif di Malang.",
-            lokasi_kunjungan: "Kampung Warna-Warni",
-            nama_sekolah: "SMPIP Baitul Maal",
-            background_color: "#667eea",
-            surface_color: "#ffffff",
-            text_color: "#374151",
-            primary_action_color: "#4f46e5",
-            secondary_action_color: "#6b7280",
-            font_family: "Inter",
-            font_size: 16
-        };
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <title>Dokumentasi Ekspedisi | RT 002 United</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
 
-        // ===== ELEMENT SDK IMPLEMENTATION =====
-        async function onConfigChange(config) {
-            // Update text content
-            const judulElement = document.getElementById('judul-utama');
-            if (judulElement) {
-                judulElement.textContent = config.judul_utama || defaultConfig.judul_utama;
-            }
-
-            const subtitleElement = document.getElementById('subtitle');
-            if (subtitleElement) {
-                subtitleElement.textContent = config.subtitle || defaultConfig.subtitle;
-            }
-
-            const deskripsiElement = document.getElementById('deskripsi-ekspedisi');
-            if (deskripsiElement) {
-                deskripsiElement.textContent = config.deskripsi_ekspedisi || defaultConfig.deskripsi_ekspedisi;
-            }
-
-            const lokasiElement = document.getElementById('lokasi-kunjungan');
-            if (lokasiElement) {
-                lokasiElement.textContent = config.lokasi_kunjungan || defaultConfig.lokasi_kunjungan;
-            }
-
-            const sekolahElement = document.getElementById('nama-sekolah');
-            if (sekolahElement) {
-                sekolahElement.textContent = config.nama_sekolah || defaultConfig.nama_sekolah;
-            }
-
-            // Update colors
-            const backgroundColor = config.background_color || defaultConfig.background_color;
-            const surfaceColor = config.surface_color || defaultConfig.surface_color;
-            const textColor = config.text_color || defaultConfig.text_color;
-            const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
-            const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
-
-            // Apply background color to gradient header
-            const header = document.querySelector('header');
-            if (header) {
-                header.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${primaryActionColor} 100%)`;
-            }
-
-            // Apply surface color to cards and white backgrounds
-            const whiteElements = document.querySelectorAll('.bg-white');
-            whiteElements.forEach(element => {
-                element.style.backgroundColor = surfaceColor;
-            });
-
-            // Apply text color
-            const textElements = document.querySelectorAll('.text-gray-800, .text-gray-700');
-            textElements.forEach(element => {
-                element.style.color = textColor;
-            });
-
-            // Apply primary action color to accent elements
-            const accentElements = document.querySelectorAll('.bg-indigo-600, .text-indigo-600');
-            accentElements.forEach(element => {
-                if (element.classList.contains('bg-indigo-600')) {
-                    element.style.backgroundColor = primaryActionColor;
-                } else {
-                    element.style.color = primaryActionColor;
-                }
-            });
-
-            // Apply font settings
-            const customFont = config.font_family || defaultConfig.font_family;
-            const baseSize = config.font_size || defaultConfig.font_size;
-            const baseFontStack = 'system-ui, -apple-system, sans-serif';
-
-            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/LOGO-SMP-892x1024.png" alt="Logo SMPIP Baitul Maal"> 
+            </div>
             
-            // Scale text proportionally
-            const h1Elements = document.querySelectorAll('h1');
-            h1Elements.forEach(element => {
-                element.style.fontSize = `${baseSize * 3}px`;
-            });
+            <nav>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#lokasi">Lokasi</a></li>
+                    <li><a href="#peserta">Struktur Tim</a></li>
+                    <li><a href="#squad-gallery">Line-up</a></li>
+                    <li><a href="#refleksi">Refleksi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-            const h2Elements = document.querySelectorAll('h2');
-            h2Elements.forEach(element => {
-                element.style.fontSize = `${baseSize * 2.25}px`;
-            });
-
-            const h3Elements = document.querySelectorAll('h3');
-            h3Elements.forEach(element => {
-                element.style.fontSize = `${baseSize * 1.5}px`;
-            });
-
-            const pElements = document.querySelectorAll('p');
-            pElements.forEach(element => {
-                element.style.fontSize = `${baseSize}px`;
-            });
-        }
-
-        // ===== CAPABILITIES MAPPING =====
-        function mapToCapabilities(config) {
-            return {
-                recolorables: [
-                    {
-                        get: () => config.background_color || defaultConfig.background_color,
-                        set: (value) => {
-                            config.background_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ background_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.surface_color || defaultConfig.surface_color,
-                        set: (value) => {
-                            config.surface_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ surface_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.text_color || defaultConfig.text_color,
-                        set: (value) => {
-                            config.text_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ text_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
-                        set: (value) => {
-                            config.primary_action_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ primary_action_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-                        set: (value) => {
-                            config.secondary_action_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ secondary_action_color: value });
-                            }
-                        }
-                    }
-                ],
-                borderables: [],
-                fontEditable: {
-                    get: () => config.font_family || defaultConfig.font_family,
-                    set: (value) => {
-                        config.font_family = value;
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_family: value });
-                        }
-                    }
-                },
-                fontSizeable: {
-                    get: () => config.font_size || defaultConfig.font_size,
-                    set: (value) => {
-                        config.font_size = value;
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_size: value });
-                        }
-                    }
-                }
-            };
-        }
-
-        // ===== EDIT PANEL VALUES MAPPING =====
-        function mapToEditPanelValues(config) {
-            return new Map([
-                ["judul_utama", config.judul_utama || defaultConfig.judul_utama],
-                ["subtitle", config.subtitle || defaultConfig.subtitle],
-                ["deskripsi_ekspedisi", config.deskripsi_ekspedisi || defaultConfig.deskripsi_ekspedisi],
-                ["lokasi_kunjungan", config.lokasi_kunjungan || defaultConfig.lokasi_kunjungan],
-                ["nama_sekolah", config.nama_sekolah || defaultConfig.nama_sekolah]
-            ]);
-        }
-
-        // ===== SDK INITIALIZATION =====
-        if (window.elementSdk) {
-            window.elementSdk.init({
-                defaultConfig,
-                onConfigChange,
-                mapToCapabilities,
-                mapToEditPanelValues
-            });
-        }
-
-        // ===== EVENT HANDLERS =====
+    <section id="overview">
         
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        <img 
+            src="images/LOGO-SMP-892x1024.png" 
+            alt="Logo SMPIP Baitul Maal" 
+            class="hero-corner-logo left-corner"
+        >
 
-        // Navigation scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('shadow-lg');
-            } else {
-                nav.classList.remove('shadow-lg');
-            }
-        });
-    </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9960bc68a7caea86',t:'MTc2MTcyMDU5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+        <img 
+            src="images/RT 02 United.jpg" 
+            alt="Logo Kelompok RT 002 United" 
+            class="hero-corner-logo right-corner"
+        >
+        
+        <div class="hero-content">
+            
+            <h2>DOKUMENTASI EKSPEDISI MALANG</h2>
+            <h2>KELOMPOK RT 002 UNITED, KELAS 9 SMPIP BAITUL MAAL</h2>
+            <div class="badge-date">10 - 14 NOVEMBER 2025</div>
+            
+            <a href="https://docs.google.com/document/d/1AnGFSg3tQl3Wc8lYljcnSnB9_ujhH68Q/view" target="_blank" class="action-button">
+                <i class='bx bxs-file-doc'></i> Lihat Proposal Lengkap
+            </a>
+            
+        </div>
+    </section>
+
+    <div class="container stats">
+        <div class="stat-card">
+            <h3><span id="stat-hari">0</span> Hari</h3>
+            <p>Durasi Ekspedisi</p>
+        </div>
+        <div class="stat-card">
+            <h3><span id="stat-anggota">0</span> Anggota</h3>
+            <p>Guru Fasilitator & Siswa RT 002</p>
+        </div>
+        <div class="stat-card">
+            <h3><span id="stat-destinasi">0</span>+ Lokasi</h3>
+            <p>Edukasi, Budaya, & Pengabdian</p>
+        </div>
+    </div>
+
+    <section id="lokasi" class="lokasi">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--primary-color); text-shadow: none;">🗺️ Destinasi Kunci & Nilai Edukasi</h2>
+            <div class="lokasi-grid">
+                
+                <div class="lokasi-card">
+                    <i class='bx bxs-institution'></i>
+                    <h4>SMPIP Baitul Maal & Dusun Maron</h4>
+                    <p>Titik kumpul awal. Mengajarkan **Disiplin dan Kebersamaan** tim.</p>
+                </div>
+                
+                <div class="lokasi-card">
+                    <i class='bx bxs-train'></i>
+                    <h4>Stasiun Senen & Malang Kota Baru</h4>
+                    <p>Titik Keberangkatan. Melatih **Tanggung Jawab dan Kesabaran** dalam mobilitas.</p>
+                </div>
+                
+                <div class="lokasi-card">
+                    <i class='bx bxs-paint'></i>
+                    <h4>Kampung Warna-Warni Jodipan</h4>
+                    <p>Simbol perubahan sosial melalui seni. Nilai: **Kreativitas dan Kolaborasi**.</p>
+                </div>
+                
+                <div class="lokasi-card">
+                    <i class='bx bxs-castle'></i>
+                    <h4>Museum Brawijaya</h4>
+                    <p>Mengabadikan perjuangan TNI. Nilai: **Patriotisme, Perjuangan**.</p>
+                </div>
+                
+                <div class="lokasi-card">
+                    <i class='bx bxs-bus'></i>
+                    <h4>Museum Angkut</h4>
+                    <p>Perkembangan alat transportasi. Nilai: **Perkembangan Teknologi**.</p>
+                </div>
+                
+                <div class="lokasi-card">
+                    <i class='bx bxs-tree'></i>
+                    <h4>Perkebunan Apel & Zoologi Frater</h4>
+                    <p>Wisata agro. Nilai: **Pertanian Berkelanjutan** dan menghargai hasil kerja petani.</p>
+                </div>
+                
+                <div class="lokasi-card">
+                    <i class='bx bxs-home-heart'></i>
+                    <h4>Desa Pujon Lor</h4>
+                    <p>Pusat kegiatan Pengabdian Masyarakat. Nilai: **Empati, Komunikasi**, dan **Gotong Royong**.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline">
+        <div class="container">
+            <h2 class="section-title">📅 Rundown Kegiatan (10 - 14 November 2025)</h2>
+
+            <div class="timeline-item">
+                <div class="timeline-date"><h3>10 Nov</h3></div>
+                <div class="timeline-content">
+                    <h4>Pelepasan & Eksplorasi Kota</h4>
+                    <ul>
+                        <li>Pelepasan Ekspedisi.</li>
+                        <li>Keberangkatan stasiun Senen - Malang.</li>
+                        <li>Explorasi Kampung Warna Warni & Tridi.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date"><h3>11 Nov</h3></div>
+                <div class="timeline-content">
+                    <h4>Sejarah & Awal Pengabdian Desa</h4>
+                    <ul>
+                        <li>Explorasi Museum Brawijaya.</li>
+                        <li>Pembukaan di Balai Desa & Sapa Masyarakat.</li>
+                        <li>**Games dan Edukasi anak-anak TPA**.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date"><h3>12 Nov</h3></div>
+                <div class="timeline-content">
+                    <h4>Penyuluhan & Kelas Inspirasi</h4>
+                    <ul>
+                        <li>**Penyuluhan 7+1 Kebiasaan Anak Indonesia Hebat**.</li>
+                        <li>Observasi dan sharing profesi community.</li>
+                        <li>**Kelas Inspirasi Desa**: Membuat kerajinan tangan gantungan kunci.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date"><h3>13 Nov</h3></div>
+                <div class="timeline-content">
+                    <h4>Bakti Sosial & Wisata Alam</h4>
+                    <ul>
+                        <li>**BPJS** (Bersih-bersih perkampungan jadi sehat).</li>
+                        <li>Closing Desa.</li>
+                        <li>Explorasi perkebunan apel & Museum Angkut.</li>
+                        <li>Upacara penutupan di desa.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date"><h3>14 Nov</h3></div>
+                <div class="timeline-content">
+                    <h4>Kepulangan</h4>
+                    <ul>
+                        <li>Perjalanan pulang Jakarta (Stasiun Malang - Senen).</li>
+                        <li>Tiba di SMP Islam Plus Baitul Maal.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="peserta">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--primary-color); text-shadow: none;">🧑‍🤝‍🧑 Susunan Kepanitiaan RT 002 United</h2>
+            
+            <img 
+                src="images/RT 02 United.jpg" 
+                alt="Logo RT 002 United" 
+                class="peserta-section-logo"
+            >
+            
+            <div class="peserta-grid">
+
+                <div class="peserta-card fasilitator">
+                    <span class="role">Guru Fasilitator</span>
+                    <img src="images/1.jpg" alt="Foto Guru Fasilitator">
+                    <h4>Pak Reza Sa'adi, S.Pd</h4>
+                    <p>Pembimbing & Koordinator Umum</p>
+                </div>
+
+                <div class="peserta-card ketua">
+                    <span class="role">Ketua RT 002</span>
+                    <img src="images/kenzie.jpg" alt="Foto Muhammad Kenzie Narendra">
+                    <h4>Muhammad Kenzie Narendra</h4>
+                    <p>MC (Master of Ceremony) & Juru Bicara</p>
+                </div>
+
+                <div class="peserta-card mc">
+                    <span class="role">MC</span>
+                    <img src="images/5.jpg" alt="Foto Muhammad Alfrazi Wijaya">
+                    <h4>Muhammad Alfrazi Wijaya</h4>
+                    <p>MC (Master of Ceremony)</p>
+                </div>
+                
+                <div class="peserta-card perkap">
+                    <span class="role">Perkap (Perlengkapan)</span>
+                    <img src="images/2.jpg" alt="Foto Ghaisan Aulia Hakim Adrimasyah">
+                    <h4>Ghaisan Aulia Hakim Adrimasyah</h4>
+                    <p>Koordinator Perlengkapan</p>
+                </div>
+                
+                <div class="peserta-card perkap">
+                    <span class="role">Perkap (Perlengkapan)</span>
+                    <img src="images/nadhif.jpg" alt="Foto Nadhif Bazily Arham">
+                    <h4>Nadhif Bazily Arham</h4>
+                    <p>Koordinator Perlengkapan</p>
+                </div>
+                
+                <div class="peserta-card icebreaking">
+                    <span class="role">Ice Breaking</span>
+                    <img src="images/tsani.jpg" alt="Foto Mohamad Tsani Akbar">
+                    <h4>Mohamad Tsani Akbar</h4>
+                    <p>Koordinator Ice Breaking & Konsumsi</p>
+                </div>
+                
+                <div class="peserta-card games">
+                    <span class="role">Games</span>
+                    <img src="images/3.jpg" alt="Foto Fakhry Zhafran Khairi">
+                    <h4>Fakhry Zhafran Khairi</h4>
+                    <p>Koordinator Games & Keamanan</p>
+                </div>
+                
+                <div class="peserta-card games">
+                    <span class="role">Games</span>
+                    <img src="images/gibran.jpg" alt="Foto Gibran Hady Wibowo">
+                    <h4>Gibran Hady Wibowo</h4>
+                    <p>Koordinator Games & Acara</p>
+                </div>
+                
+                <div class="peserta-card dokumentasi">
+                    <span class="role">Dokumentasi</span>
+                    <img src="images/4.jpg" alt="Foto Abiyyu Nawwaf Almujaddid">
+                    <h4>Abiyyu Nawwaf Almujaddid</h4>
+                    <p>Koordinator Dokumentasi & Fotografi</p>
+                </div>
+
+                <div class="peserta-card operator">
+                    <span class="role">Operator</span>
+                    <img src="images/utbah.jpg" alt="Foto Utbah Syamil Rabbani">
+                    <h4>Utbah Syamil Rabbani</h4>
+                    <p>Koordinator Operator & Logistik</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="squad-gallery" class="squad-gallery">
+        <div class="container">
+            <h2 class="section-title">⚽ RT 002 United Line-up (Formasi 1-3-3-2)</h2>
+            <p class="squad-subtitle">Memimpin Ekspedisi dengan Semangat Tim!</p>
+            
+            <div class="manager-card">
+                <img src="images/1.jpg" alt="Pak Reza Sa'adi">
+                <h4>Pak Reza Sa'adi, S.Pd</h4>
+                <p>MANAGER / Guru Fasilitator</p>
+            </div>
+
+            <div class="pitch-container">
+                <div class="penalty-box-left"></div>
+                <div class="penalty-box-right"></div>
+                <div class="goal-box-left"></div>
+                <div class="goal-box-right"></div>
+                
+                <div class="player-bubble gk-abiyyu">
+                    <img src="images/4.jpg" alt="Abiyyu">
+                    <span class="pos">GK</span>
+                    <span class="name">Abiyyu (Dok.)</span>
+                </div>
+                
+                <div class="player-bubble lb-utbah">
+                    <img src="images/utbah.jpg" alt="Utbah">
+                    <span class="pos">LB</span>
+                    <span class="name">Utbah (Op.)</span>
+                </div>
+                <div class="player-bubble cb-nadhif">
+                    <img src="images/nadhif.jpg" alt="Nadhif">
+                    <span class="pos">CB</span>
+                    <span class="name">Nadhif (Perkap)</span>
+                </div>
+                <div class="player-bubble rb-ghaisan">
+                    <img src="images/2.jpg" alt="Ghaisan">
+                    <span class="pos">RB</span>
+                    <span class="name">Ghaisan (Perkap)</span>
+                </div>
+                
+                <div class="player-bubble lm-gibran">
+                    <img src="images/gibran.jpg" alt="Gibran">
+                    <span class="pos">LM</span>
+                    <span class="name">Gibran (Games)</span>
+                </div>
+                <div class="player-bubble cm-tsani">
+                    <img src="images/tsani.jpg" alt="Tsani">
+                    <span class="pos">CM</span>
+                    <span class="name">Tsani (IB)</span>
+                </div>
+                <div class="player-bubble rm-fakhry">
+                    <img src="images/3.jpg" alt="Fakhry">
+                    <span class="pos">RM</span>
+                    <span class="name">Fakhry (Games)</span>
+                </div>
+
+                <div class="player-bubble cf-alfrazi">
+                    <img src="images/5.jpg" alt="Alfrazi">
+                    <span class="pos">CF</span>
+                    <span class="name">Alfrazi (MC)</span>
+                </div>
+                <div class="player-bubble st-kenzie">
+                    <img src="images/kenzie.jpg" alt="Kenzie">
+                    <span class="pos">ST</span>
+                    <span class="name">Kenzie (Ketua)</span>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+    <section id="galeri" style="background-color: var(--primary-color);">
+        <div class="container">
+            <h2 class="section-title">📸 Galeri Dokumentasi Proyek</h2>
+            <div class="galeri-grid">
+                
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?malang-mountain" alt="Pemandangan Gunung di Malang"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?malang-apple-farm" alt="Perkebunan Apel Malang"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?malang-city-square" alt="Alun-Alun Kota Malang"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?malang-street-art" alt="Seni Jalanan Malang"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?group-activity" alt="Foto Grup Kegiatan Ekspedisi"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?teamwork-kids" alt="Kegiatan Edukasi Anak-anak"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?hiking-trail-malang" alt="Foto Saat Pendakian atau Trekking"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?volunteering-cleanup" alt="Aksi Bersih-bersih (BPJS)"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?transportation-museum" alt="Foto Museum Angkut/Transportasi"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?museum-brawijaya" alt="Foto Ikon Museum Brawijaya"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?malang-traditional-food" alt="Kuliner Khas Malang"></div>
+                <div class="galeri-item"><img src="https://source.unsplash.com/400x300/?malang-sunset" alt="Pemandangan Matahari Terbenam di Malang"></div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="refleksi">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--primary-color); text-shadow: none;">💡 Refleksi dan Tujuan Proyek</h2>
+            <div class="refleksi-content">
+                <h3>A. Latar Belakang Proyek</h3>
+                <p>Ekspedisi ini mengusung tema **"Interaksi"** dan subtema **"Kreasi"**, dengan fokus pada topik **"Olahraga"** (Kesehatan dan Gerak). Tujuan utamanya adalah menumbuhkan kemampuan siswa dalam berinteraksi, bekerja sama, meningkatkan kesadaran kesehatan, dan mengembangkan kreativitas melalui aktivitas fisik di lingkungan Desa Pujon Lor.</p>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="https://docs.google.com/document/d/1AnGFSg3tQl3Wc8lYljcnSnB9_ujhH68Q/view" target="_blank" class="action-button">
+                        <i class='bx bxs-file-doc'></i> Buka Dokumen Proposal Lengkap
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dokumentasi Proyek Ekspedisi Malang. Kelompok RT 002 United, Kelas 9 SMPIP Baitul Maal.</p>
+            <p>Dibangun dengan semangat Interaksi & Kreasi.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> 
+</body>
 </html>
