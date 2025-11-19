@@ -1,72 +1,86 @@
 // =================================================
-// script.js: ANIMASI COUNTER & SMOOTH SCROLLING (STABLE)
+// script.js: ANIMASI COUNTER & SCROLL EFFECTS
 // =================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // 1. FUNGSI ANIMASI COUNTER STATISTIK
+    
+    /**
+     * Menganimasikan hitungan dari 0 hingga endValue.
+     * @param {string} id - ID elemen HTML target (tanpa #).
+     * @param {number} endValue - Nilai akhir hitungan.
+     * @param {number} duration - Durasi total animasi dalam milidetik (ms).
+     */
     function animateCounter(id, endValue, duration) {
         const element = document.getElementById(id);
-        if (!element) return;
+        if (!element) return; // Guard clause jika elemen tidak ditemukan
         
         let start = 0;
-        const stepTime = Math.max(1, Math.abs(Math.floor(duration / endValue))); 
+        
+        // Menghitung interval waktu untuk setiap langkah (step)
+        // Memastikan tidak ada pembagian dengan nol
+        const stepTime = endValue > 0 ? Math.abs(Math.floor(duration / endValue)) : duration; 
 
         const timer = setInterval(() => {
             start += 1;
             element.textContent = start;
             if (start >= endValue) {
-                element.textContent = endValue;
+                element.textContent = endValue; // Memastikan nilai akhir tercapai
                 clearInterval(timer);
             }
         }, stepTime);
     }
 
-    // Nilai-nilai statistik
+    // Nilai-nilai statistik yang akan dianimasikan
     const totalHari = 5;
     const totalAnggota = 10;
-    const totalDestinasi = 8; 
+    const totalDestinasi = 8;
 
+    // Panggil fungsi counter saat DOM dimuat
+    // Counter berjalan selama 1.5 detik (1500ms)
     animateCounter('stat-hari', totalHari, 1500);
     animateCounter('stat-anggota', totalAnggota, 1500);
     animateCounter('stat-destinasi', totalDestinasi, 1500);
 
 
     // 2. LOGIKA EFEK SCROLL (Fade-in/Slide-up menggunakan Intersection Observer)
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // Tambahkan kelas 'visible' jika elemen muncul di viewport
                 entry.target.classList.add('visible');
+                // Berhenti mengamati setelah elemen terlihat
                 observer.unobserve(entry.target); 
             }
         });
     }, {
+        // threshold 0.1 berarti 10% dari elemen harus terlihat sebelum memicu
         threshold: 0.1
     });
 
-    // Amati semua elemen konten untuk animasi
-    document.querySelectorAll('.lokasi-card, .peserta-card, .timeline-item, .refleksi-content, .stat-card, .galeri-item').forEach(card => {
+    // Array dari semua selector elemen yang ingin diberi efek animasi
+    const scrollAnimatedSelectors = [
+        '.lokasi-card',
+        '.peserta-card',
+        '.timeline-content',
+        '.refleksi-content',
+        '.galeri-item',
+        '.stat-card' // Tambahkan stat-card ke animasi scroll agar tidak langsung muncul
+    ];
+
+    // Gabungkan semua selector dan amati setiap elemen
+    const elementsToAnimate = document.querySelectorAll(scrollAnimatedSelectors.join(', '));
+
+    elementsToAnimate.forEach(card => {
+        // Set kondisi awal (tersembunyi dan sedikit turun)
         card.style.opacity = '0';
-        card.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-        card.style.transform = 'translateY(50px)';
+        card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        card.style.transform = 'translateY(20px)';
+        
+        // Mulai mengamati elemen
         observer.observe(card);
     });
 
-    
-    // 3. SMOOTH SCROLLING NAVIGASI
-    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start' 
-                });
-            }
-        });
-    });
 });
