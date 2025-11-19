@@ -1,5 +1,5 @@
 // =================================================
-// script.js: ANIMASI COUNTER, SCROLL EFFECTS, & SMOOTH SCROLLING
+// script.js: ANIMASI COUNTER & SMOOTH SCROLLING (FINAL STABLE)
 // =================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -45,8 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Amati semua elemen konten untuk animasi
-    document.querySelectorAll('.lokasi-card, .peserta-card, .timeline-item, .timeline-content, .refleksi-content, .stat-card, .galeri-item').forEach(card => {
-        // Set kondisi awal (opacity 0, transform Y)
+    document.querySelectorAll('.lokasi-card, .peserta-card, .timeline-item, .refleksi-content, .stat-card, .galeri-item').forEach(card => {
         card.style.opacity = '0';
         card.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
         card.style.transform = 'translateY(50px)';
@@ -54,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     
-    // 3. SMOOTH SCROLLING NAVIGASI (Memicu Scroll Snap)
+    // 3. SMOOTH SCROLLING NAVIGASI
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -63,10 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                // Scroll ke elemen target dengan efek smooth, memicu scroll-snap
+                // Scroll ke elemen target dengan efek smooth
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'start' // Memastikan snapping dimulai dari atas section
+                    block: 'start' 
                 });
             }
         });
