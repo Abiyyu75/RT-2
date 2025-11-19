@@ -4,13 +4,14 @@
 
 :root {
     /* Warna Dasar Estetika Malang */
-    --color-forest: #386641; 
-    --color-soil: #A79F8C;   
+    --color-forest: #386641; /* Hijau Tua */
+    --color-soil: #A79F8C;   /* Abu-abu Tanah */
     --color-accent: #BC4749; /* Merah Apel */
-    --color-sky: #A9D6E5;    
-    --color-text-dark: #2F4048; 
+    --color-sky: #A9D6E5;    /* Biru Langit */
+    --color-text-dark: #2F4048; /* Dark Navy/Hitam */
     --color-text-light: #F4F8F9;
     --bg-main: #F4F8F9;
+    --bg-dark-section: #2F4048; /* Background untuk kontras */
 }
 
 * {
@@ -19,7 +20,6 @@
 }
 
 body {
-    /* Latar Belakang Utama */
     background: var(--bg-main);
     color: var(--color-text-dark);
     scroll-behavior: smooth;
@@ -29,7 +29,6 @@ body {
 /* UTILITIES */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 section { padding: 80px 0; }
-
 .section-title {
     text-align: center; font-size: 2.5em; font-weight: 700;
     color: var(--color-forest); margin-bottom: 40px;
@@ -53,13 +52,13 @@ nav ul li a:hover { color: var(--color-sky); }
 #overview {
     /* Wallpaper Pegunungan/Kabut Malang */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
-                url('https://source.unsplash.com/1600x600/?malang-mountain-fog,forest') center/cover no-repeat;
+                url('https://source.unsplash.com/1600x700/?malang-mountain-fog,forest') center/cover no-repeat;
     height: 70vh;
     display: flex; justify-content: center; align-items: center; text-align: center;
     color: var(--color-text-light);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0; /* Penting: Hapus margin-bottom di sini */
 }
-
 .hero-content h2:first-of-type { font-size: 3em; text-shadow: 2px 2px var(--color-forest); margin-bottom: 5px; }
 .sub-hero { color: var(--color-sky); font-size: 1.2em; margin-bottom: 20px; }
 .badge-date { background-color: var(--color-accent); padding: 8px 20px; border-radius: 5px; font-weight: 600; margin-bottom: 30px; }
@@ -69,26 +68,25 @@ nav ul li a:hover { color: var(--color-sky); }
 /* --- STATS --- */
 .stats-wrapper {
     display: flex; justify-content: space-around;
-    margin-top: -60px; /* Overlap ke Hero */
+    margin-top: -120px; /* Nilai overlap yang kuat */
     position: relative; z-index: 10;
-    background: none; /* Hilangkan background agar konten melayang di atas body */
     padding-bottom: 40px;
 }
 .stat-card {
     background: var(--color-forest); 
     border-radius: 10px; padding: 25px; text-align: center;
     color: var(--color-text-light); width: 30%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
 }
 .stat-card h3 { color: var(--color-soil); font-size: 2.2em; }
 .stat-card p { font-size: 0.85em; text-transform: uppercase; }
 
 /* --- LOKASI SECTION --- */
-#lokasi-wrapper { background: var(--bg-main); color: var(--color-text-dark); }
+#lokasi { background: var(--bg-main); color: var(--color-text-dark); padding-top: 50px; }
 .lokasi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
 .lokasi-card { background-color: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-top: 4px solid var(--color-accent); }
 .lokasi-card h4 { color: var(--color-forest); margin-bottom: 5px; }
-.lokasi-img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; border: 3px solid var(--color-soil); }
+.lokasi-img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; border: 3px solid var(--color-soil); } 
 .lokasi-card i { color: var(--color-accent); font-size: 2.5em; margin-bottom: 10px; }
 
 /* --- TIMELINE SECTION --- */
@@ -114,26 +112,25 @@ nav ul li a:hover { color: var(--color-sky); }
 .fasilitator .role { background-color: var(--color-accent); color: white; } 
 
 /* --- GALERI & REFLEKSI --- */
-#galeri { background-color: var(--color-text-dark); }
+#galeri { background-color: var(--bg-dark-section); }
 #galeri .section-title { color: var(--color-soil); }
 .galeri-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; width: 90%; margin: 0 auto; }
 .galeri-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; transition: transform 0.3s; }
 .galeri-item img:hover { transform: scale(1.05); }
 
-#refleksi { background-color: var(--bg-main); color: var(--color-text-dark); }
-.refleksi-content { background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
-.refleksi-content h3 { color: var(--color-forest); margin-bottom: 15px; }
-
 /* --- FOOTER --- */
 footer { background-color: var(--color-text-dark); color: #aaaaaa; text-align: center; padding: 20px 0; font-size: 0.8em; }
 
-/* --- ANIMASI SCROLL --- */
+/* --- ANIMASI SCROLL CLASS --- */
 .visible { opacity: 1 !important; transform: translateY(0) !important; }
 
 /* --- MEDIA QUERIES --- */
 @media (max-width: 768px) {
-    .stats-wrapper { flex-direction: column; gap: 20px; padding: 20px; }
+    .stats-wrapper { flex-direction: column; gap: 20px; padding: 20px; margin-top: -60px;} /* Overlap di mobile */
     .stat-card { width: 100%; }
     .hero-content h2:first-of-type { font-size: 2em; }
-    nav ul { gap: 15px; }
+    nav ul { gap: 15px; flex-direction: column; align-items: center; }
+    header .header-content { flex-direction: column; }
+    nav ul { margin-top: 10px; }
+    nav ul li a { margin: 5px 0; }
 }
