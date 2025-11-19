@@ -1,5 +1,5 @@
 // =================================================
-// script.js: ANIMASI COUNTER & SMOOTH SCROLLING (FINAL STABLE)
+// script.js: ANIMASI COUNTER & SMOOTH SCROLLING (STABLE)
 // =================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                // Scroll ke elemen target dengan efek smooth
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start' 
