@@ -1,14 +1,14 @@
 /* ================================================= */
-/* style.css: ESTETIKA MALANG RAYA (Sejuk, Pegunungan, Heritage) + FULL-PAGE SNAP */
+/* style.css: ESTETIKA MALANG RAYA + FULL-PAGE SNAP */
 /* ================================================= */
 
 :root {
     /* Warna Dasar Estetika Malang */
-    --color-forest: #386641; /* Hijau hutan/pegunungan */
-    --color-soil: #A79F8C;   /* Abu-abu tanah */
-    --color-accent: #BC4749; /* Merah Apel/Bata Heritage */
-    --color-sky: #A9D6E5;    /* Biru langit sejuk */
-    --color-text-dark: #2F4048; /* Dark Navy/Hitam */
+    --color-forest: #386641; 
+    --color-soil: #A79F8C;   
+    --color-accent: #BC4749; 
+    --color-sky: #A9D6E5;    
+    --color-text-dark: #2F4048; 
     --color-text-light: #F4F8F9;
     --bg-main: #F4F8F9;
 }
@@ -35,35 +35,26 @@ body {
     overflow-y: scroll;
 }
 
-/* UTILITIES */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
 /* GAYA UNTUK SETIAP SECTION (Membuatnya menjadi "halaman" penuh) */
 .full-page-section {
-    height: 100vh; /* Tinggi penuh viewport */
-    scroll-snap-align: start; /* Titik snapping */
+    height: 100vh; 
+    scroll-snap-align: start; 
     width: 100%;
     padding: 80px 0;
     
-    /* Gunakan flexbox untuk menengahkan konten secara default */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Menengahkan horizontal */
+    align-items: center; 
     
-    overflow-y: auto; /* Jika konten di dalamnya terlalu panjang, section itu sendiri yang bisa digulir */
+    overflow-y: auto; /* Memungkinkan scroll di dalam section jika konten kepanjangan */
 }
 
 .section-title {
-    text-align: center;
-    font-size: 2.5em;
-    font-weight: 700;
-    color: var(--color-forest); 
-    margin-bottom: 40px;
+    text-align: center; font-size: 2.5em; font-weight: 700;
+    color: var(--color-forest); margin-bottom: 40px;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
     padding-top: 0; 
 }
@@ -71,151 +62,76 @@ body {
 /* --- HEADER & NAVIGATION --- */
 header {
     background: rgba(56, 102, 65, 0.9);
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(5px);
+    color: var(--color-text-light);
+    padding: 15px 0; position: fixed; top: 0; width: 100%; z-index: 1000;
+    backdrop-filter: blur(5px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
-/* ... (Gaya navigasi lainnya) ... */
 
-
-/* --- HERO SECTION (OVERLAY) --- */
+/* --- HERO SECTION --- */
 #overview {
-    /* Overlay untuk Hero Section */
     background: rgba(47, 64, 72, 0.8); 
     color: var(--color-text-light);
 }
-
-.hero-content {
-    /* Konten teks di tengah Hero */
-    text-align: center;
-    padding: 20px;
-}
-
-.hero-content h2:first-of-type {
-    font-size: 3em;
-    text-shadow: 2px 2px var(--color-forest);
-}
-
-.sub-hero {
-    color: var(--color-sky);
-}
-
-.action-button {
-    background-color: var(--color-forest);
-    color: var(--color-text-light);
-}
-/* ... (Gaya lainnya) ... */
-
+.hero-content { text-align: center; padding: 20px; }
+.hero-content h2:first-of-type { font-size: 3em; text-shadow: 2px 2px var(--color-forest); }
+.sub-hero { color: var(--color-sky); }
+.action-button { background-color: var(--color-forest); color: var(--color-text-light); }
+.action-button:hover { background-color: var(--color-text-dark); transform: translateY(-2px); }
 
 /* --- STATS SECTION --- */
-#stats {
-    background: rgba(47, 64, 72, 0.8); /* Sama dengan Hero untuk transisi yang mulus */
-}
-
-.stats {
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-    max-width: 1000px;
-}
-
+#stats { background: rgba(47, 64, 72, 0.8); }
+.stats { display: flex; justify-content: space-around; width: 90%; max-width: 1000px; }
 .stat-card {
     background: var(--color-forest); 
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     color: var(--color-text-light);
-    width: 30%;
-    padding: 30px;
-    text-align: center;
+    width: 30%; padding: 30px; text-align: center;
 }
-/* ... (Gaya stat card lainnya) ... */
-
+.stat-card h3 { color: var(--color-soil); font-size: 2.5em; }
 
 /* --- LOKASI SECTION --- */
-#lokasi-wrapper {
-    background: var(--bg-main);
-    color: var(--color-text-dark);
-}
-
-.lokasi-grid {
-    width: 90%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
+#lokasi-wrapper { background: var(--bg-main); color: var(--color-text-dark); }
+.lokasi-grid { width: 90%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.lokasi-card { background-color: white; border-top: 5px solid var(--color-accent); padding: 15px; }
+.lokasi-card h4 { color: var(--color-forest); }
 .lokasi-img {
-    width: 100%; 
-    height: 120px; 
-    object-fit: cover; 
-    border-radius: 5px;
-    margin-bottom: 10px;
-    border: 3px solid var(--color-soil); 
+    width: 100%; height: 120px; object-fit: cover; border-radius: 5px;
+    margin-bottom: 10px; border: 3px solid var(--color-soil); 
 }
-/* ... (Gaya lokasi lainnya) ... */
-
 
 /* --- TIMELINE SECTION --- */
-#timeline {
-    background: var(--color-forest);
-    color: var(--color-text-light);
+#timeline { background: var(--color-forest); color: var(--color-text-light); }
+/* Garis Tengah */
+#timeline .container::before {
+    content: ''; position: absolute; left: 50%; top: 100px; bottom: 50px; width: 2px;
+    background: linear-gradient(to bottom, var(--color-soil), var(--color-sky), var(--color-soil));
+    transform: translateX(-50%); z-index: 1;
 }
-
-.timeline-content {
-    background: rgba(255, 255, 255, 0.1); 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
+.timeline-item { position: relative; z-index: 2; /* Styling untuk item ganjil/genap dan konten*/ }
 /* ... (Gaya timeline lainnya) ... */
 
-
 /* --- PESERTA SECTION --- */
-#peserta {
-    background: var(--bg-main);
-    color: var(--color-text-dark);
-}
-
-.peserta-grid {
-    width: 80%;
-    grid-template-columns: repeat(2, 1fr); /* 2 kolom di desktop agar masuk 100vh */
-}
-/* ... (Gaya peserta lainnya) ... */
-
+#peserta { background: var(--bg-main); color: var(--color-text-dark); }
+.peserta-section-logo { display: block; width: 100px; margin: 0 auto 50px; border: 3px solid var(--color-accent); border-radius: 50%; padding: 5px; }
+.peserta-grid { width: 80%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.peserta-card { background-color: white; color: var(--color-text-dark); padding: 15px; }
 
 /* --- GALERI SECTION --- */
-#galeri {
-    background-color: var(--color-text-dark);
-}
+#galeri { background-color: var(--color-text-dark); }
+.galeri-grid { width: 80%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+.galeri-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; }
 
-.galeri-grid {
-    width: 80%;
-    grid-template-columns: repeat(3, 1fr); /* 3 kolom di desktop */
-    gap: 15px;
-}
-/* ... (Gaya galeri lainnya) ... */
+/* --- ANIMASI SCROLL --- */
+.visible { opacity: 1 !important; transform: translateY(0) !important; }
 
-
-/* --- FOOTER --- */
-footer {
-    /* Footer tidak boleh full-page. Hapus properti height: 100vh jika ditambahkan. */
-    background-color: var(--color-text-dark);
-    color: #aaaaaa;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.8em;
-}
-
-/* MEDIA QUERIES untuk Full-Page di Mobile */
+/* --- MEDIA QUERIES --- */
 @media (max-width: 768px) {
-    .full-page-section {
-        padding: 60px 0;
-    }
-    .stats, .lokasi-grid, .peserta-grid, .galeri-grid {
-        width: 100%;
-        grid-template-columns: 1fr; /* 1 kolom di mobile */
-    }
-    .stats {
-        flex-direction: column;
-        gap: 20px;
-    }
+    .full-page-section { padding: 60px 0; }
+    body { height: auto; /* Nonaktifkan scroll snap di mobile jika terlalu mengganggu */ scroll-snap-type: none; }
+    .header-content { flex-direction: column; }
+    .stats { flex-direction: column; gap: 20px; width: 100%; }
+    .stat-card { width: 90%; }
+    .lokasi-grid, .peserta-grid, .galeri-grid { width: 100%; grid-template-columns: 1fr; }
+    #timeline .container::before { left: 20px; transform: translateX(0); } /* Timeline Mobile */
 }
