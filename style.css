@@ -1,136 +1,397 @@
 /* ================================================= */
-/* style.css: ESTETIKA MALANG RAYA (CLEAN & STABLE) */
+/* style.css: STYLING WEBSITE BERTEMA MALANG & ESTETIK */
 /* ================================================= */
 
 :root {
-    /* Warna Dasar Estetika Malang */
-    --color-forest: #386641; /* Hijau Tua */
-    --color-soil: #A79F8C;   /* Abu-abu Tanah */
-    --color-accent: #BC4749; /* Merah Apel */
-    --color-sky: #A9D6E5;    /* Biru Langit */
-    --color-text-dark: #2F4048; /* Dark Navy/Hitam */
-    --color-text-light: #F4F8F9;
-    --bg-main: #F4F8F9;
-    --bg-dark-section: #2F4048; /* Background untuk kontras */
+    /* Palet Warna Malang: Biru Langit, Hijau Pegunungan, Merah Apel */
+    --primary-blue: #0077B6; /* Biru Gelap: Langit malam / Laut */
+    --secondary-blue: #00B4D8; /* Biru Cerah: Langit siang / Air jernih */
+    --accent-cyan: #90E0EF; /* Cyan: Aksen sejuk */
+    --malang-green: #386641; /* Hijau Tua: Hutan pegunungan */
+    --malang-red: #BC4749; /* Merah Apel: Aksen khas Malang */
+    
+    --text-dark: #2F4048; /* Warna teks gelap */
+    --text-light: #F0F4F8; /* Warna teks terang */
+    --bg-light: #F8F9FA; /* Background ringan */
+
+    /* Glassmorphism Variables */
+    --glass-bg: rgba(255, 255, 255, 0.15); /* Background transparan untuk glassmorphism */
+    --glass-border: 1px solid rgba(255, 255, 255, 0.3); /* Border untuk glassmorphism */
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Shadow untuk glassmorphism */
 }
 
 * {
-    margin: 0; padding: 0; box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background: var(--bg-main);
-    color: var(--color-text-dark);
+    background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue), #023e8a); /* Gradient biru pegunungan */
+    color: var(--text-dark);
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    position: relative;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+/* Dekorasi Body: Pola gunung/diagonal sebagai latar belakang halus */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff10' d='M40 0l-5 10l-10 10l5 10l10 10l-5 10l10 10l-5 10l10 10l-5 10h50l-10-10l5-10l-10-10l5-10l-10-10l5-10l-10-10l5-10L60 0z'/%3E%3C/svg%3E");
+    opacity: 0.1;
+    z-index: -1;
 }
 
 /* UTILITIES */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-section { padding: 80px 0; }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+}
+
 .section-title {
-    text-align: center; font-size: 2.5em; font-weight: 700;
-    color: var(--color-forest); margin-bottom: 40px;
+    text-align: center;
+    font-size: 2.8em; /* Ukuran judul lebih besar */
+    font-weight: 700;
+    color: var(--text-light); /* Warna putih untuk kontras di background biru */
+    margin-bottom: 50px; /* Jarak bawah judul */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Shadow lebih kuat */
     padding-top: 20px;
 }
 
-/* --- HEADER & NAVIGATION (Fixed & Clean) --- */
+/* HEADER & NAVIGATION */
 header {
-    background: var(--color-forest);
-    color: var(--color-text-light);
-    padding: 15px 0; position: sticky; top: 0; width: 100%; z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 31, 63, 0.8); /* Background biru gelap transparan */
+    color: var(--text-light);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Pastikan header selalu di atas */
+    backdrop-filter: blur(10px); /* Efek glassmorphism pada header */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); /* Shadow lebih kuat */
 }
-.header-content { display: flex; justify-content: space-between; align-items: center; }
-.logo img { height: 40px; }
-nav ul { list-style: none; display: flex; }
-nav ul li a { color: var(--color-text-light); text-decoration: none; margin-left: 30px; font-weight: 600; transition: color 0.3s; }
-nav ul li a:hover { color: var(--color-sky); }
 
-/* --- HERO SECTION (Wallpaper effect) --- */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px; /* Ketinggian logo sedikit lebih besar */
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 15px; /* Padding navigasi */
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    /* Efek garis bawah saat hover */
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-cyan);
+        transition: width 0.3s ease;
+    }
+    &:hover::after {
+        width: 100%;
+    }
+}
+
+nav ul li a:hover {
+    color: var(--accent-cyan);
+    background-color: rgba(255, 255, 255, 0.1); /* Sedikit efek background saat hover */
+}
+
+/* HERO SECTION */
 #overview {
-    /* Wallpaper Pegunungan/Kabut Malang */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
-                url('https://source.unsplash.com/1600x700/?malang-mountain-fog,forest') center/cover no-repeat;
-    height: 70vh;
-    display: flex; justify-content: center; align-items: center; text-align: center;
-    color: var(--color-text-light);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    margin-bottom: 0; /* Penting: Hapus margin-bottom di sini */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
+                url('https://source.unsplash.com/1600x900/?malang-mountain-landscape,batu-forest') center/cover no-repeat;
+    height: 85vh; /* Ketinggian hero lebih tinggi */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-light);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0; /* Pastikan tidak ada margin-bottom di sini */
 }
-.hero-content h2:first-of-type { font-size: 3em; text-shadow: 2px 2px var(--color-forest); margin-bottom: 5px; }
-.sub-hero { color: var(--color-sky); font-size: 1.2em; margin-bottom: 20px; }
-.badge-date { background-color: var(--color-accent); padding: 8px 20px; border-radius: 5px; font-weight: 600; margin-bottom: 30px; }
-.action-button { background-color: var(--color-forest); color: var(--color-text-light); text-decoration: none; padding: 12px 30px; border-radius: 5px; transition: background-color 0.3s; }
-.action-button:hover { background-color: var(--color-text-dark); }
 
-/* --- STATS --- */
+/* Dekorasi Khas Malang di Hero (Apel & Gunung) */
+#overview::before {
+    content: '🍎'; /* Ikon Apel */
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    font-size: 8em; /* Ukuran ikon lebih besar */
+    opacity: 0.7;
+    transform: translateY(-50%) rotate(-25deg);
+    z-index: 1;
+    filter: drop-shadow(0 0 10px var(--malang-red)); /* Shadow untuk ikon */
+}
+
+#overview::after {
+    content: '⛰️'; /* Ikon Gunung */
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    font-size: 10em; /* Ukuran ikon lebih besar */
+    opacity: 0.7;
+    z-index: 1;
+    filter: drop-shadow(0 0 10px var(--malang-green)); /* Shadow untuk ikon */
+}
+
+.hero-content {
+    padding: 40px; /* Padding lebih besar */
+    backdrop-filter: blur(15px); /* Efek blur lebih kuat */
+    background-color: rgba(0, 0, 0, 0.4); /* Background lebih transparan */
+    border-radius: 20px; /* Border radius lebih besar */
+    z-index: 2;
+    border: var(--glass-border); /* Border glassmorphism */
+    box-shadow: var(--glass-shadow); /* Shadow glassmorphism */
+}
+
+.hero-content .main-title {
+    font-size: 4.5em; /* Judul utama lebih besar */
+    margin-bottom: 15px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Shadow lebih dramatis */
+    color: var(--accent-cyan); /* Warna judul yang menonjol */
+}
+
+.sub-hero {
+    font-size: 1.6em; /* Sub-judul lebih besar */
+    font-weight: 400;
+    margin-bottom: 25px;
+    color: var(--text-light);
+}
+
+.badge-date {
+    display: inline-block;
+    background-color: var(--malang-red); /* Warna merah apel */
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* TOMBOL AKSI */
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--malang-green); /* Hijau pegunungan */
+    color: white;
+    padding: 15px 35px; /* Padding lebih besar */
+    border-radius: 8px; /* Border radius lebih besar */
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(56, 102, 65, 0.4); /* Shadow sesuai warna tombol */
+    border: none;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 1.1em;
+}
+
+.action-button i {
+    font-size: 1.4em;
+}
+
+.action-button:hover {
+    background-color: #2b5032; /* Hijau yang lebih gelap saat hover */
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(56, 102, 65, 0.6);
+}
+
+/* STATS */
 .stats-wrapper {
-    display: flex; justify-content: space-around;
-    margin-top: -120px; /* Nilai overlap yang kuat */
-    position: relative; z-index: 10;
-    padding-bottom: 40px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: -150px; /* Overlap lebih tinggi ke hero section */
+    position: relative;
+    z-index: 10;
+    padding-bottom: 60px; /* Padding bawah lebih besar */
 }
+
 .stat-card {
-    background: var(--color-forest); 
-    border-radius: 10px; padding: 25px; text-align: center;
-    color: var(--color-text-light); width: 30%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
+    background: var(--glass-bg); /* Glassmorphism background */
+    backdrop-filter: blur(12px); /* Blur lebih kuat */
+    border-radius: 20px; /* Border radius lebih besar */
+    padding: 30px; /* Padding lebih besar */
+    text-align: center;
+    color: var(--text-light);
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    width: 30%;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.stat-card h3 { color: var(--color-soil); font-size: 2.2em; }
-.stat-card p { font-size: 0.85em; text-transform: uppercase; }
 
-/* --- LOKASI SECTION --- */
-#lokasi { background: var(--bg-main); color: var(--color-text-dark); padding-top: 50px; }
-.lokasi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.lokasi-card { background-color: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-top: 4px solid var(--color-accent); }
-.lokasi-card h4 { color: var(--color-forest); margin-bottom: 5px; }
-.lokasi-img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; border: 3px solid var(--color-soil); } 
-.lokasi-card i { color: var(--color-accent); font-size: 2.5em; margin-bottom: 10px; }
+.stat-card:hover {
+    transform: translateY(-15px) scale(1.03); /* Efek hover lebih dramatis */
+    box-shadow: 0 20px 40px 0 rgba(31, 38, 135, 0.5); /* Shadow lebih kuat saat hover */
+}
 
-/* --- TIMELINE SECTION --- */
-#timeline { background: var(--color-forest); color: var(--color-text-light); position: relative; }
-#timeline .section-title { color: var(--color-text-light); }
+.stat-card h3 {
+    font-size: 3em; /* Ukuran font lebih besar */
+    color: var(--accent-cyan); /* Warna aksen */
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.stat-card p {
+    font-size: 1em; /* Ukuran font sedikit lebih besar */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light);
+}
+
+/* LOKASI KUNJUNGAN */
+#lokasi {
+    padding-top: 100px; /* Padding atas lebih besar karena stats overlap */
+    background: var(--bg-light);
+    color: var(--text-dark);
+}
+
+#lokasi .section-title {
+    color: var(--primary-blue); /* Judul di section putih berwarna biru */
+    text-shadow: none;
+}
+
+.lokasi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.lokasi-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px; /* Padding lebih besar */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Shadow lebih kuat */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border-top: 6px solid var(--malang-red); /* Border top lebih tebal & warna apel */
+}
+
+.lokasi-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.lokasi-img {
+    width: 100%;
+    height: 150px; /* Ketinggian gambar lokasi */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 3px solid var(--secondary-blue); /* Border gambar */
+}
+
+.lokasi-card i {
+    font-size: 3em; /* Ukuran ikon lebih besar */
+    color: var(--malang-green); /* Warna ikon hijau */
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: transform 0.5s ease;
+}
+
+.lokasi-card:hover i {
+    transform: rotateY(360deg) scale(1.1); /* Animasi ikon lebih dramatis */
+}
+
+.lokasi-card h4 {
+    font-size: 1.6em; /* Ukuran judul lebih besar */
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.lokasi-card p {
+    font-size: 1em;
+    color: #5a6268;
+    line-height: 1.6;
+}
+
+/* TIMELINE */
+#timeline {
+    background: var(--primary-blue); /* Background biru gelap */
+    color: var(--text-light);
+    position: relative;
+    padding: 100px 0;
+}
+
+#timeline .section-title {
+    color: var(--text-light);
+}
+
+/* Garis Tengah Vertikal (Didekorasi) */
 #timeline .container::before {
-    content: ''; position: absolute; left: 50%; top: 100px; bottom: 50px; width: 2px;
-    background: linear-gradient(to bottom, var(--color-soil), var(--color-sky), var(--color-soil)); z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 6px; /* Garis lebih tebal */
+    height: 100%;
+    background: linear-gradient(to bottom, var(--secondary-blue), var(--accent-cyan), var(--secondary-blue));
+    z-index: 1;
     transform: translateX(-50%);
+    border-radius: 3px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Shadow untuk garis */
 }
-.timeline-item { display: flex; justify-content: space-between; margin-bottom: 40px; position: relative; z-index: 2; }
-.timeline-item:nth-child(even) { flex-direction: row-reverse; }
-.timeline-date { width: 20%; text-align: center; position: relative; }
-.timeline-content { width: 70%; background-color: rgba(255, 255, 255, 0.1); border-radius: 5px; padding: 20px; }
-.timeline-content h4 { color: var(--color-sky); margin-bottom: 10px; }
 
-/* --- PESERTA SECTION --- */
-#peserta { background: var(--bg-main); color: var(--color-text-dark); }
-.peserta-section-logo { display: block; width: 100px; margin: 0 auto 40px; border: 3px solid var(--color-accent); border-radius: 50%; padding: 5px; }
-.peserta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 90%; margin: 0 auto; }
-.peserta-card { background-color: white; color: var(--color-text-dark); border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
-.peserta-card img { width: 100%; max-height: 200px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; }
-.fasilitator .role { background-color: var(--color-accent); color: white; } 
-
-/* --- GALERI & REFLEKSI --- */
-#galeri { background-color: var(--bg-dark-section); }
-#galeri .section-title { color: var(--color-soil); }
-.galeri-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; width: 90%; margin: 0 auto; }
-.galeri-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; transition: transform 0.3s; }
-.galeri-item img:hover { transform: scale(1.05); }
-
-/* --- FOOTER --- */
-footer { background-color: var(--color-text-dark); color: #aaaaaa; text-align: center; padding: 20px 0; font-size: 0.8em; }
-
-/* --- ANIMASI SCROLL CLASS --- */
-.visible { opacity: 1 !important; transform: translateY(0) !important; }
-
-/* --- MEDIA QUERIES --- */
-@media (max-width: 768px) {
-    .stats-wrapper { flex-direction: column; gap: 20px; padding: 20px; margin-top: -60px;} /* Overlap di mobile */
-    .stat-card { width: 100%; }
-    .hero-content h2:first-of-type { font-size: 2em; }
-    nav ul { gap: 15px; flex-direction: column; align-items: center; }
-    header .header-content { flex-direction: column; }
-    nav ul { margin-top: 10px; }
-    nav ul li a { margin: 5px 0; }
+.timeline-item {
+    display: flex;
+    margin-bottom: 60px; /* Jarak antar item timeline */
+    position: relative;
+    z-index: 2;
+    align-items: center; /* Memastikan tanggal dan konten sejajar */
 }
+
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.timeline-date {
+    width: 25%; /* Lebar tanggal */
+    text-align: center;
+    position: relative;
+    flex-shrink: 0; /* Mencegah mengecil */
+}
+
+.timeline-date h3 {
+    background-color: var(--malang-red); /* Warna merah apel untuk tanggal */
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius:
