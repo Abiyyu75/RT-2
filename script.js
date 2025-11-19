@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, stepTime);
     }
 
-    // Nilai-nilai statistik (total destinasi 8 sesuai dengan HTML)
+    // Nilai-nilai statistik
     const totalHari = 5;
     const totalAnggota = 10;
     const totalDestinasi = 8; 
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animateCounter('stat-destinasi', totalDestinasi, 1500);
 
 
-    // 2. LOGIKA EFEK SCROLL (Fade-in/Slide-up)
+    // 2. LOGIKA EFEK SCROLL (Fade-in/Slide-up menggunakan Intersection Observer)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Amati semua elemen konten untuk animasi
     document.querySelectorAll('.lokasi-card, .peserta-card, .timeline-item, .timeline-content, .refleksi-content, .stat-card, .galeri-item').forEach(card => {
+        // Set kondisi awal (opacity 0, transform Y)
         card.style.opacity = '0';
         card.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
         card.style.transform = 'translateY(50px)';
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Scroll ke elemen target dengan efek smooth, memicu scroll-snap
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'start'
+                    block: 'start' // Memastikan snapping dimulai dari atas section
                 });
             }
         });
