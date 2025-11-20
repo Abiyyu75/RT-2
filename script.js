@@ -1,86 +1,67 @@
 // =================================================
-// script.js: ANIMASI COUNTER & SCROLL EFFECTS (FIXED)
+// script.js: ANIMASI COUNTER & SCROLL EFFECTS
 // =================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Nilai-nilai statistik yang akan dianimasikan
-    const STATS = {
-        'stat-hari': 5,
-        'stat-anggota': 10,
-        'stat-destinasi': 8
-    };
+    // 1. FUNGSI ANIMASI COUNTER STATISTIK
+    
+    /**
+     * Menganimasikan hitungan dari 0 hingga endValue.
+     */
+    function animateCounter(id, endValue, duration) {
+        const element = document.getElementById(id);
+        let start = 0;
+        
+        // Menghitung interval waktu untuk setiap langkah (step)
+        const stepTime = Math.abs(Math.floor(duration / endValue)); 
 
-    /* 1. FUNGSI ANIMASI COUNTER STATISTIK */
+        const timer = setInterval(() => {
+            start += 1;
+            element.textContent = start;
+            if (start === endValue) {
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
 
-    /**
-     * Menganimasikan hitungan dari 0 hingga endValue.
-     */
-    function animateCounter(id, endValue, duration = 1500) {
-        const element = document.getElementById(id);
-        let start = 0;
-        
-        // Menghitung interval waktu untuk setiap langkah (step)
-        const stepTime = Math.max(1, Math.abs(Math.floor(duration / endValue))); 
+    // Nilai-nilai statistik yang akan dianimasikan
+    const totalHari = 5;
+    const totalAnggota = 10;
+    const totalDestinasi = 8;
 
-        const timer = setInterval(() => {
-            start += 1;
-            element.textContent = start;
-            if (start === endValue) {
-                clearInterval(timer);
-            }
-        }, stepTime);
-    }
+    // Panggil fungsi counter saat DOM dimuat
+    // Counter berjalan selama 1.5 detik (1500ms)
+    document.getElementById('stat-hari').textContent = totalHari;
+    document.getElementById('stat-anggota').textContent = totalAnggota;
+    document.getElementById('stat-destinasi').textContent = totalDestinasi;
 
-    // Status untuk memastikan counter hanya berjalan sekali
-    let statsAnimated = false;
 
-    /* 2. LOGIKA EFEK SCROLL & TRIGGER COUNTER */
+    // 2. LOGIKA EFEK SCROLL (Fade-in/Slide-up menggunakan Intersection Observer)
 
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                
-                // --- A. Logika Animasi Counter ---
-                if (entry.target.classList.contains('stats') && !statsAnimated) {
-                    for (const id in STATS) {
-                        animateCounter(id, STATS[id], 1500);
-                    }
-                    statsAnimated = true; // Set status agar tidak terulang
-                }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Tambahkan kelas 'visible' jika elemen muncul di viewport
+                entry.target.classList.add('visible');
+                // Berhenti mengamati setelah elemen terlihat
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, {
+        // threshold 0.1 berarti 10% dari elemen harus terlihat sebelum memicu
+        threshold: 0.1
+    });
 
-                // --- B. Logika Scroll Effect (Fade-in/Slide-up) ---
-                entry.target.classList.add('visible');
-                
-                // Berhenti mengamati setelah elemen terlihat (kecuali stats)
-                if (!entry.target.classList.contains('stats')) {
-                    observer.unobserve(entry.target);
-                }
-            }
-        });
-    }, {
-        // threshold 0.1 berarti 10% dari elemen harus terlihat sebelum memicu
-        threshold: 0.1
-    });
-
-    // 3. INISIALISASI EFEK SCROLL
-
-    // Pilih semua elemen yang ingin diberi efek animasi
-    const elementsToAnimate = document.querySelectorAll(
-        '.stat-card, .lokasi-card, .peserta-card, .timeline-content, .refleksi-content, .galeri-item'
-    );
-
-    elementsToAnimate.forEach(card => {
-        // Set kondisi awal (tersembunyi dan sedikit turun)
-        card.style.opacity = '0';
-        card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        card.style.transform = 'translateY(20px)';
-        
-        // Mulai mengamati elemen
-        scrollObserver.observe(card);
-    });
-
-    // Amati juga container stats untuk memicu counter
-    scrollObserver.observe(document.querySelector('.stats'));
+    // Pilih semua elemen yang ingin diberi efek animasi
+    document.querySelectorAll('.lokasi-card, .peserta-card, .timeline-content, .refleksi-content, .galeri-item')
+        // KESALAHAN SINTAKSIS ASLI: ini akan menyebabkan eror.
+        card.style.opacity = '0';
+        card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        card.style.transform = 'translateY(20px)';
+        
+        // Mulai mengamati elemen
+        observer.observe(card);
+    });
 
 });
