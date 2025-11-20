@@ -1,58 +1,61 @@
 // =================================================
-// script.js: ANIMASI COUNTER & SCROLL EFFECTS
+// script.js: ANIMASI COUNTER & SCROLL EFFECTS (FIXED)
 // =================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. FUNGSI ANIMASI COUNTER STATISTIK
-    
+    // Nilai-nilai statistik yang akan dianimasikan
+    const STATS = {
+        'stat-hari': 5,
+        'stat-anggota': 10,
+        'stat-destinasi': 8
+    };
+
+    /* 1. FUNGSI ANIMASI COUNTER STATISTIK */
+
     /**
      * Menganimasikan hitungan dari 0 hingga endValue.
-     * @param {string} id - ID elemen HTML target (tanpa #).
-     * @param {number} endValue - Nilai akhir hitungan.
-     * @param {number} duration - Durasi total animasi dalam milidetik (ms).
      */
-    function animateCounter(id, endValue, duration) {
+    function animateCounter(id, endValue, duration = 1500) {
         const element = document.getElementById(id);
-        if (!element) return; // Guard clause jika elemen tidak ditemukan
-        
         let start = 0;
         
         // Menghitung interval waktu untuk setiap langkah (step)
-        // Memastikan tidak ada pembagian dengan nol
-        const stepTime = endValue > 0 ? Math.abs(Math.floor(duration / endValue)) : duration; 
+        const stepTime = Math.max(1, Math.abs(Math.floor(duration / endValue))); 
 
         const timer = setInterval(() => {
             start += 1;
             element.textContent = start;
-            if (start >= endValue) {
-                element.textContent = endValue; // Memastikan nilai akhir tercapai
+            if (start === endValue) {
                 clearInterval(timer);
             }
         }, stepTime);
     }
 
-    // Nilai-nilai statistik yang akan dianimasikan
-    const totalHari = 5;
-    const totalAnggota = 10;
-    const totalDestinasi = 8;
+    // Status untuk memastikan counter hanya berjalan sekali
+    let statsAnimated = false;
 
-    // Panggil fungsi counter saat DOM dimuat
-    // Counter berjalan selama 1.5 detik (1500ms)
-    animateCounter('stat-hari', totalHari, 1500);
-    animateCounter('stat-anggota', totalAnggota, 1500);
-    animateCounter('stat-destinasi', totalDestinasi, 1500);
+    /* 2. LOGIKA EFEK SCROLL & TRIGGER COUNTER */
 
-
-    // 2. LOGIKA EFEK SCROLL (Fade-in/Slide-up menggunakan Intersection Observer)
-
-    const observer = new IntersectionObserver((entries) => {
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Tambahkan kelas 'visible' jika elemen muncul di viewport
+                
+                // --- A. Logika Animasi Counter ---
+                if (entry.target.classList.contains('stats') && !statsAnimated) {
+                    for (const id in STATS) {
+                        animateCounter(id, STATS[id], 1500);
+                    }
+                    statsAnimated = true; // Set status agar tidak terulang
+                }
+
+                // --- B. Logika Scroll Effect (Fade-in/Slide-up) ---
                 entry.target.classList.add('visible');
-                // Berhenti mengamati setelah elemen terlihat
-                observer.unobserve(entry.target); 
+                
+                // Berhenti mengamati setelah elemen terlihat (kecuali stats)
+                if (!entry.target.classList.contains('stats')) {
+                    observer.unobserve(entry.target);
+                }
             }
         });
     }, {
@@ -60,18 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.1
     });
 
-    // Array dari semua selector elemen yang ingin diberi efek animasi
-    const scrollAnimatedSelectors = [
-        '.lokasi-card',
-        '.peserta-card',
-        '.timeline-content',
-        '.refleksi-content',
-        '.galeri-item',
-        '.stat-card' // Tambahkan stat-card ke animasi scroll agar tidak langsung muncul
-    ];
+    // 3. INISIALISASI EFEK SCROLL
 
-    // Gabungkan semua selector dan amati setiap elemen
-    const elementsToAnimate = document.querySelectorAll(scrollAnimatedSelectors.join(', '));
+    // Pilih semua elemen yang ingin diberi efek animasi
+    const elementsToAnimate = document.querySelectorAll(
+        '.stat-card, .lokasi-card, .peserta-card, .timeline-content, .refleksi-content, .galeri-item'
+    );
 
     elementsToAnimate.forEach(card => {
         // Set kondisi awal (tersembunyi dan sedikit turun)
@@ -80,7 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transform = 'translateY(20px)';
         
         // Mulai mengamati elemen
-        observer.observe(card);
+        scrollObserver.observe(card);
     });
+
+    // Amati juga container stats untuk memicu counter
+    scrollObserver.observe(document.querySelector('.stats'));
 
 });
